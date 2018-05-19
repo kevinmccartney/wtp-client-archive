@@ -1,8 +1,8 @@
 {
   "name": "wtp-client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "This is the We the Party web app that consumes the web services from the WTP server.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "dependencies": {
     "@storybook/react": "4.0.0-alpha.7",
     "babel-core": "^6.26.3",
@@ -28,9 +28,11 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "NODE_PATH=src start-storybook -p 9001 -c src/.storybook",
+    "storybook": "storybook",
     "lint": "eslint src",
-    "prepush": "eslint src"
+    "prepush": "eslint src",
+    "build": "babel src/ -d dist/",
+    "watch": "babel src -d dist/ --watch"
   },
   "repository": {
     "type": "git",
