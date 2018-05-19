@@ -1,0 +1,43 @@
+{
+  "name": "wtp-client",
+  "version": "0.0.1",
+  "description": "This is the We the Party web app that consumes the web services from the WTP server.",
+  "main": "dist/index.js",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-import-resolver-babel-module": "^4.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
+    "husky": "^0.14.3",
+    "webpack": "^4.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinmccartney/we-the-party-client.git"
+  },
+  "keywords": [
+    "client",
+    "ui",
+    "interface",
+    "react"
+  ],
+  "author": "Kevin McCartney",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kevinmccartney/we-the-party-client/issues"
+  },
+  "homepage": "https://github.com/kevinmccartney/we-the-party-client#readme"
+}
