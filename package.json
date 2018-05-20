@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "dependencies": {
     "@storybook/react": "4.0.0-alpha.7",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.4",
@@ -33,7 +34,7 @@
     "prepush": "eslint src",
     "build": "babel src/ -d dist/",
     "watch": "babel src -d dist/ --watch",
-    "postinstall": "build"
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
