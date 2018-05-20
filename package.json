@@ -1,6 +1,6 @@
 {
   "name": "wtp-client",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "This is the We the Party web app that consumes the web services from the WTP server.",
   "main": "dist/index.js",
   "dependencies": {
@@ -32,7 +32,8 @@
     "lint": "eslint src",
     "prepush": "eslint src",
     "build": "babel src/ -d dist/",
-    "watch": "babel src -d dist/ --watch"
+    "watch": "babel src -d dist/ --watch",
+    "postinstall": "build"
   },
   "repository": {
     "type": "git",
