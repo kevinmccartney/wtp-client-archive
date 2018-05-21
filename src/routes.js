@@ -1,26 +1,17 @@
 import Splash from '@views/Splash';
-import NotFound from '@views/NotFound';
 import Party from '@views/Party';
-import Root from '@views/Root';
 
-const routes = [{
-  component: Root,
-  routes: [{
+const routes = [
+  {
     path: '/',
     exact: true,
     component: Splash,
-    routes: [
-      {
-        path: '/party',
-        exact: true,
-        component: Party,
-      },
-      {
-        path: '/*',
-        component: NotFound,
-      },
-    ],
-  }],
-}];
+  },
+  {
+    path: '/party',
+    exact: true,
+    component: Party,
+  },
+];
 
 export default routes;

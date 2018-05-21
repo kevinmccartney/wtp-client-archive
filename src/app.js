@@ -1,17 +1,12 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { hydrate } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-import 'babel-polyfill';
+import Router from './Router';
 
-import BrowserRouter from 'react-router-dom/BrowserRouter';
-import { renderRoutes } from 'react-router-config';
-
-import routes from './routes';
-
-const AppRouter = () => (
+hydrate(
   <BrowserRouter>
-    {renderRoutes(routes)}
-  </BrowserRouter>
+    <Router />
+  </BrowserRouter>,
+  document.getElementById('app'),
 );
-
-render(<AppRouter />, document.querySelector('#app'));
