@@ -1,31 +1,33 @@
 import 'babel-polyfill';
 
 import React from 'react';
-import { hydrate, Switch, Route } from 'react-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import routes from './routes';
 
 import NotFound from './views/NotFound';
 
 const Router = () => (
-  <Switch>
-    {routes.map(({
-      path,
-      exact,
-      component: Component,
-      ...rest
-    }) => (
-      <Route
-        key={path}
-        path={path}
-        exact={exact}
-        render={props => (
-          <Component {...props} {...rest} />
-        )}
-      />
-    ))}
-    <Route render={props => <NotFound {...props} />} />
-  </Switch>
+  <div>
+    <Switch>
+      {routes.map(({
+        path,
+        exact,
+        component: Component,
+        ...rest
+      }) => (
+        <Route
+          key={path}
+          path={path}
+          exact={exact}
+          render={props => (
+            <Component {...props} {...rest} />
+          )}
+        />
+      ))}
+      <Route render={props => <NotFound {...props} />} />
+    </Switch>
+  </div>
 );
 
-hydrate(<Router />, document.querySelector('#app'));
+export default Router;
