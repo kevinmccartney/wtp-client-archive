@@ -2,7 +2,7 @@ import React from 'react';
 
 class Party extends React.Component {
   static async fetchUserData() {
-    const req = await fetch('/api/me');
+    const req = await fetch('/api/me', { credentials: 'same-origin' });
     const reqJson = await req.json();
 
     return reqJson;
@@ -25,15 +25,6 @@ class Party extends React.Component {
     });
   }
 
-  renderName() {
-    if (this.state.response) {
-      return this.state.response.display_name || this.state.response.id;
-    }
-
-    return undefined;
-  }
-
-
   render() {
     return (
       <div
@@ -42,11 +33,9 @@ class Party extends React.Component {
         <section
           className="container bg-white"
         >
-          {this.state.repsonse &&
-            <div className="p-5">
-              {JSON.stringify(this.state.response, null, 2)}
-            </div>
-          }
+          <div className="p-5">
+            {this.state.response && JSON.stringify(this.state.response, null, 2)}
+          </div>
         </section>
       </div>
     );
