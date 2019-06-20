@@ -4,5 +4,8 @@ services:
   node:
     build:
       context: ./wtp-client
-      args:
-        SCRIPT: "start"
+    command: 'npm run start'
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./wtp-client:/root
