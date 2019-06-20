@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  node:
+      build:
+        context: ./wtp-client
+        args:
+          SCRIPT: "start"
+  node:
+    build:
+      context: ./wtp-client
+      args:
+        SCRIPT: "build"
+    volumes:
+      - app_data:/root/wtp-client/dist/wtp-client
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - app_data:/root/wtp-client/dist/wtp-client
+    depends_on:
+      - node
+volumes:
+  app_data:
