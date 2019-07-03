@@ -1,19 +1,27 @@
-version: "3"
+version: "3.5"
 
 services:
   node:
+    container_name: wtp_node
     build:
       context: ./wtp-client
-    command: 'npm run build'
     volumes:
-      - app_data:/root/wtp-client/dist/wtp-client
-  nginx:
+      - app_data:/root/wtp-client
+    networks:
+      - wtp_net
+  nginx_client:
+    container_name: wtp_nginx_client
     build: ./nginx
     ports:
-      - "80:80"
+      - "8080"
     volumes:
-      - app_data:/root/wtp-client/dist/wtp-client
+      - app_data:/root/wtp-client
     depends_on:
       - node
+    networks:
+      - wtp_net
 volumes:
   app_data:
+networks:
+  wtp_net:
+    name: wtp_net

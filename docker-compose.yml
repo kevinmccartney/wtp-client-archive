@@ -1,7 +1,8 @@
-version: "3"
+version: "3.5"
 
 services:
   node:
+    container_name: wtp_node
     build:
       context: ./wtp-client
     command: 'npm run start'
@@ -9,3 +10,8 @@ services:
       - "4200:4200"
     volumes:
       - ./wtp-client:/root
+    networks:
+      - wtp_net
+networks:
+  wtp_net:
+    name: wtp_net

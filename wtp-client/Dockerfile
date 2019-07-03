@@ -1,11 +1,15 @@
 from node:latest
 
-COPY src /root
+RUN mkdir /root/wtp-client
 
-COPY *.json /root/
+ADD src /root/wtp-client/src
 
-WORKDIR /root
+COPY *.json *.js browserslist /root/wtp-client/
+
+WORKDIR /root/wtp-client
 
 RUN npm i
 
-CMD npm run ${SCRIPT}
+RUN npm run build
+
+RUN ls -la
