@@ -41,8 +41,8 @@ workflows:
     version: 2.0
     build-and-deploy:
       jobs:
+        - checkout
         - set-env-vars
-        # - checkout
         # - install
         # - aws-cli/install
         # - aws-cli/configure
