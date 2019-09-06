@@ -21,15 +21,8 @@ jobs:
           name: 'build'
           command: 'npm run build'
       - aws-s3/sync:
-          from: dist
+          from: dist/wtp-web
           to: 's3://wtp-web-develop'
           arguments: "--acl public-read --cache-control max-age=86400"
           overwrite: true
           aws-region: AWS_DEFAULT_REGION
-
-  # build-deploy:
-  #   steps:
-  #     - checkout
-  #         steps:
-  #           - run: npm install
-  #     - run: npm run test
