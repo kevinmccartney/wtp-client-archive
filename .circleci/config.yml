@@ -8,10 +8,10 @@ jobs:
       - image: circleci/node:10.16.0
     steps:
       - checkout
-      - run_test:
+      - run:
           name: 'test'
           command: 'npm run test'
-      - run_build:
+      - run:
           name: 'build'
           command: 'npm run build'
       # - aws-s3/copy:
