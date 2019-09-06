@@ -14,9 +14,9 @@ jobs:
       - run_build:
           name: 'build'
           command: 'npm run build'
-      - run_deploy
-          name: 'deploy'
-          command: 'echo "hello"'
+      # - aws-s3/copy:
+      #     name: 'deploy'
+      #     command: 'echo "hello"'
 
   # build-deploy:
   #   steps:
