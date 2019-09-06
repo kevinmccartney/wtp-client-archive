@@ -9,6 +9,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: 'set environment vars'
+          command: './scripts/set-vars.sh'
+      - run:
           name: 'install'
           command: 'npm i'
       - run:
