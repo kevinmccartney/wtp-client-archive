@@ -1,18 +1,23 @@
 version: 2.1
 orbs:
   aws-s3: circleci/aws-ecr@0.0.2
-  node: circleci/node@1.1
 jobs:
-  test:
-    executor:
-        name: node/default
-        tag: '10.4'
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10.16.0
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-      - run: npm run test
+      - run_test:
+          name: 'test'
+          command: 'npm run test'
+      - run_build:
+          name: 'build'
+          command: 'npm run build'
+      - run_deploy
+          name: 'deploy'
+          command: 'echo "hello"'
+
   # build-deploy:
   #   steps:
   #     - checkout
