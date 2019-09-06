@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   aws-s3: circleci/aws-ecr@0.0.2
-workflows:
+jobs:
   test:
     steps:
       - checkout
