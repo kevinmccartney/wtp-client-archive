@@ -11,42 +11,42 @@ jobs:
     exectutor: wtp-client-docker
     steps:
       - run:
-        name: 'set environment vars'
-        command: './scripts/set-vars.sh'
-  install:
-    executor: wtp-client-docker
-    steps:
-      - run:
-        name: 'install'
-        command: 'npm i'
-  test:
-    executor: wtp-client-docker
-    steps:
-        - run:
-          name: 'test'
-          command: 'npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI'
-  e2e:
-    executor: wtp-client-docker
-    steps:
-      - run:
-          name: 'build'
-          command: 'npm run build -- ${NG_BUILD_ARGS}'
-  deploy-to-s3:
-    executor: wtp-client-docker
-    steps:
-      - run:
-          name: 'copy to S3'
-          command: 'aws s3 sync dist/wtp-client ${S3_DEST} --delete --acl public-read --cache-control max-age=86400'
+          name: 'set environment vars'
+          command: './scripts/set-vars.sh'
+  # install:
+  #   executor: wtp-client-docker
+  #   steps:
+  #     - run:
+  #       name: 'install'
+  #       command: 'npm i'
+  # test:
+  #   executor: wtp-client-docker
+  #   steps:
+  #       - run:
+  #         name: 'test'
+  #         command: 'npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI'
+  # e2e:
+  #   executor: wtp-client-docker
+  #   steps:
+  #     - run:
+  #         name: 'build'
+  #         command: 'npm run build -- ${NG_BUILD_ARGS}'
+  # deploy-to-s3:
+  #   executor: wtp-client-docker
+  #   steps:
+  #     - run:
+  #         name: 'copy to S3'
+  #         command: 'aws s3 sync dist/wtp-client ${S3_DEST} --delete --acl public-read --cache-control max-age=86400'
 workflows:
     version: 2.0
     build-and-deploy:
       jobs:
         - set-env-vars
-        - checkout
-        - install
-        - aws-cli/install
-        - aws-cli/configure
-        - test
-        - e2e
-        - deploy-to-s3
+        # - checkout
+        # - install
+        # - aws-cli/install
+        # - aws-cli/configure
+        # - test
+        # - e2e
+        # - deploy-to-s3
 
