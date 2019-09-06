@@ -5,7 +5,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:10.16.0
+      - image: circleci/node:10.16.0-browsers
     steps:
       - checkout
       - run:
@@ -13,7 +13,10 @@ jobs:
           command: 'npm i'
       - run:
           name: 'test'
-          command: 'npm run test'
+          command: 'npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI'
+      - run:
+          name: 'e2e'
+          command: 'npm run e2e -- --protractor-config=./e2e/protractor-ci.conf.js'
       - run:
           name: 'build'
           command: 'npm run build'
