@@ -8,7 +8,7 @@ executors:
       - image: circleci/node:10.16.0-browsers
 jobs:
   set-env-vars:
-    exectutor: wtp-client-docker
+    executor: wtp-client-docker
     steps:
       - run:
           name: 'set environment vars'
