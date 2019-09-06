@@ -20,6 +20,9 @@ jobs:
       - run:
           name: 'build'
           command: 'npm run build'
+      - run:
+          name: 'ls'
+          command: 'ls dist'
       - aws-s3/sync:
           from: dist/wtp-web
           to: 's3://wtp-web-develop'
