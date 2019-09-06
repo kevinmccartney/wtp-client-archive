@@ -28,7 +28,7 @@ jobs:
           command: 'ls dist'
       - aws-s3/sync:
           from: dist/wtp-client
-          to: "${S3_DEST}"
+          to: $S3_DEST
           arguments: "--acl public-read --cache-control max-age=86400"
           overwrite: true
-          aws-region: AWS_DEFAULT_REGION
+          aws-region: $AWS_DEFAULT_REGION
