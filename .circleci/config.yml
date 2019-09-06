@@ -31,4 +31,4 @@ jobs:
           to: $S3_DEST
           arguments: "--acl public-read --cache-control max-age=86400"
           overwrite: true
-          aws-region: $AWS_DEFAULT_REGION
+          aws-region: AWS_REGION
