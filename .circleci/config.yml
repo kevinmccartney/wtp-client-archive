@@ -55,7 +55,7 @@ jobs:
           command: "./scripts/set-vars.sh"
       - run:
           name: "build"
-          command: "npm run build -- ${NG_BUILD_ARGS}"
+          command: npm run build -- ${NG_BUILD_ARGS}
   deploy:
     executor: wtp-client-docker
     steps:
@@ -63,10 +63,10 @@ jobs:
           at: .
       - run:
           name: "set env variables"
-          command: "./scripts/set-vars.sh"
+          command: ./scripts/set-vars.sh
       - run:
           name: "copy to S3"
-          command: "aws s3 sync dist/wtp-client ${S3_DEST} --delete --acl public-read --cache-control max-age=86400"
+          command: aws s3 sync dist/wtp-client ${S3_DEST} --delete --acl public-read --cache-control max-age=86400
 workflows:
   version: 2.0
   build-and-deploy:
