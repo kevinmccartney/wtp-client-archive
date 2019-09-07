@@ -7,18 +7,6 @@ executors:
       # specify the version you desire here
       - image: circleci/node:10.16.0-browsers
 jobs:
-  set-env-vars:
-    executor: wtp-client-docker
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: "set environment vars"
-          command: "./scripts/set-vars.sh"
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
   checkout:
     executor: wtp-client-docker
     steps:
@@ -41,24 +29,39 @@ jobs:
           root: .
           paths:
             - .
-  # build:
-  #   executor: wtp-client-docker
-  #   steps:
-  #     - run:
-  #       name: "build"
-  #       command: "npm run build"
-  # test:
-  #   executor: wtp-client-docker
-  #   steps:
-  #     - run:
-  #         name: "test"
-  #         command: "npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI"
-  # e2e:
-  #   executor: wtp-client-docker
-  #   steps:
-  #     - run:
-  #         name: "build"
-  #         command: "npm run e2e"
+  test:
+    executor: wtp-client-docker
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: "set env variables"
+          command: "./scripts/set-vars.sh"
+      - run:
+          name: "test"
+          command: "npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI"
+  e2e:
+    executor: wtp-client-docker
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: "set env variables"
+          command: "./scripts/set-vars.sh"
+      - run:
+          name: "e2e"
+          command: "npm run e2e"
+  build:
+    executor: wtp-client-docker
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: "set env variables"
+          command: "./scripts/set-vars.sh"
+      - run:
+          name: "build"
+          command: "npm run build"
   # deploy-to-s3:
   #   executor: wtp-client-docker
   #   steps:
@@ -70,27 +73,12 @@ workflows:
   build-and-deploy:
     jobs:
       - checkout
-      - set-env-vars:
-          requires:
-            - checkout
       - install:
           requires:
-            - set-env-vars
-  # test:
-  #   requires:
-  #     - setup
-  #   jobs:
-  #     - test
-  #     - e2e
-  # build:
-  #   requires:
-  #     - test
-  #   jobs:
-  #     - build
-  # deploy:
-  #   requires:
-  #     - build
-  #   jobs:
-  #     - aws-cli/install
-  #     - aws-cli/configure
-  #     - deploy-to-s3
+            - checkout
+      - test
+      - e2e
+      - build:
+          requires:
+            - test
+            - e2e
