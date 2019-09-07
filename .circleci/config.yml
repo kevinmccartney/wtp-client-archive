@@ -10,19 +10,37 @@ jobs:
   set-env-vars:
     executor: wtp-client-docker
     steps:
+      - attach_workspace:
+          at: .
       - run:
           name: "set environment vars"
           command: "./scripts/set-vars.sh"
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   checkout:
     executor: wtp-client-docker
     steps:
+      - attach_workspace:
+          at: .
       - checkout
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   install:
     executor: wtp-client-docker
     steps:
+      - attach_workspace:
+          at: .
       - run:
           name: "install"
           command: "npm i"
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   # build:
   #   executor: wtp-client-docker
   #   steps:
@@ -33,8 +51,8 @@ jobs:
   #   executor: wtp-client-docker
   #   steps:
   #     - run:
-  #       name: "test"
-  #       command: "npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI"
+  #         name: "test"
+  #         command: "npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI"
   # e2e:
   #   executor: wtp-client-docker
   #   steps:
