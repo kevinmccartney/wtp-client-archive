@@ -56,7 +56,7 @@ jobs:
       - run:
           name: "build"
           command: "npm run build -- ${NG_BUILD_ARGS}"
-  deploy-to-s3:
+  deploy:
     executor: wtp-client-docker
     steps:
       - attach_workspace:
@@ -85,3 +85,6 @@ workflows:
           requires:
             - test
             - e2e
+      - deploy:
+          requires:
+            - build
