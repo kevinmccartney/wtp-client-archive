@@ -76,8 +76,12 @@ workflows:
       - install:
           requires:
             - checkout
-      - test
-      - e2e
+      - test:
+          requires:
+            - install
+      - e2e:
+          requires:
+            - install
       - build:
           requires:
             - test
