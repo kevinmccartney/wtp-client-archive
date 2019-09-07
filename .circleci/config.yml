@@ -49,9 +49,13 @@ jobs:
   #         command: "aws s3 sync dist/wtp-client ${S3_DEST} --delete --acl public-read --cache-control max-age=86400"
 workflows:
   version: 2.0
-  setup:
+  checkout:
     jobs:
       - checkout
+  setup:
+    requires:
+      - checkout
+    jobs:
       - set-env-vars
       - install
   # test:
