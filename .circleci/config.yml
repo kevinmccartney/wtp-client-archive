@@ -55,7 +55,7 @@ jobs:
           command: "./scripts/set-vars.sh"
       - run:
           name: "build"
-          command: echo $NG_BUILD_ARGS
+          command: echo ${NG_BUILD_ARGS}
   deploy:
     executor: wtp-client-docker
     steps:
