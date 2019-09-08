@@ -83,7 +83,9 @@ workflows:
   build-and-deploy:
     jobs:
       - checkout
-      - echo-vars
+      - echo-vars:
+          requires:
+            - checkout
       # - install:
       #     requires:
       #       - checkout
