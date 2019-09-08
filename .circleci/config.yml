@@ -55,7 +55,7 @@ jobs:
           command: "./scripts/set-vars.sh"
       - run:
           name: "build"
-          command: echo ${NG_BUILD_ARGS}
+          command: "npm run build -- ${NG_BUILD_ARGS}"
   deploy:
     executor: wtp-client-docker
     steps:
@@ -86,19 +86,20 @@ workflows:
       - echo-vars:
           requires:
             - checkout
-      # - install:
-      #     requires:
-      #       - checkout
+      - install:
+          requires:
+            - checkout
       # - test:
       #     requires:
       #       - install
       # - e2e:
       #     requires:
       #       - install
-      # - build:
-      #     requires:
-      #       - test
-      #       - e2e
+      - build:
+          requires:
+            # - test
+            # - e2e
+            - install
       # - deploy:
       #     requires:
       #       - build
