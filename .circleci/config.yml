@@ -52,7 +52,7 @@ jobs:
           at: .
       - run:
           name: "set env variables"
-          command: "./scripts/set-vars.sh"
+          command: "source ./scripts/set-vars.sh"
       - run:
           name: "build"
           command: "npm run build -- ${NG_BUILD_ARGS}"
@@ -74,10 +74,10 @@ jobs:
           at: .
       - run:
           name: "set env variables"
-          command: ./scripts/set-vars.sh
+          command: "source ./scripts/set-vars.sh
       - run:
           name: "echo env vars"
-          command: "echo ${CI}"
+          command: "printenv"
 workflows:
   version: 2.0
   build-and-deploy:
