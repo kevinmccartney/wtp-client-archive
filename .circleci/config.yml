@@ -95,11 +95,11 @@ workflows:
       # - e2e:
       #     requires:
       #       - install
-      - build:
-          requires:
-            # - test
-            # - e2e
-            - install
+      # - build:
+      #     requires:
+      #       # - test
+      #       # - e2e
+      #       - install
       # - deploy:
       #     requires:
       #       - build
