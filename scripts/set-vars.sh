@@ -13,3 +13,5 @@ elif [ "$CIRCLE_BRANCH" == 'develop' ]
   S3_DEST="$S3_DEST_DEV";
   NG_BUILD_ARGS="$NG_BUILD_ARGS_DEV";
 fi
+
+printenv
