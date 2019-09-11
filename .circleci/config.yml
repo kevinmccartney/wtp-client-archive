@@ -67,39 +67,24 @@ jobs:
       - run:
           name: "copy to S3"
           command: aws s3 sync dist/wtp-client ${S3_DEST} --delete --acl public-read --cache-control max-age=86400
-  echo-vars:
-    executor: wtp-client-docker
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: "set env variables"
-          command: ./scripts/set-vars.sh
-      - run:
-          name: "echo env vars"
-          command: "echo ${CI}"
 workflows:
   version: 2.0
   build-and-deploy:
     jobs:
       - checkout
-      # - echo-vars:
-      #     requires:
-      #       - checkout
       - install:
           requires:
             - checkout
-      # - test:
-      #     requires:
-      #       - install
-      # - e2e:
-      #     requires:
-      #       - install
+      - test:
+          requires:
+            - install
+      - e2e:
+          requires:
+            - install
       - build:
           requires:
-            # - test
-            # - e2e
-            - install
-      # - deploy:
-      #     requires:
-      #       - build
+            - test
+            - e2e
+      - deploy:
+          requires:
+            - build
